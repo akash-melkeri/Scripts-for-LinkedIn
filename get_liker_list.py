@@ -10,8 +10,6 @@ import time, sys
 from config import USERNAME, PASSWORD
 
 browser = None
-print('args = ', len(sys.argv))
-print ('Argument List:', str(sys.argv))
 if(len(sys.argv) != 2):
     print("Something's wrong with post link")
     exit(0)
@@ -20,16 +18,18 @@ post_link = 'https://www.linkedin.com/posts/incentius_what-are-the-features-of-r
 post_link = sys.argv[1]
 
 def main():
+    print("Opening and setting up browser ...")
     setupBrowser()
+    print("Browser opened")
     getLikesOfPosts()
-    
     pickle.dump(browser.get_cookies(), open("cookies_for_scripts.pkl", "wb"))
+    browser.quit()
 
 def setupBrowser():
     global browser
     global is_first_time
     options = Options()
-    options.add_experimental_option("detach", True)
+    # options.add_experimental_option("detach", True)
     browser = webdriver.Chrome(options=options)
     browser.get("https://www.linkedin.com/")
     try:
