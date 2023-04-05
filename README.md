@@ -12,6 +12,9 @@ Run these commands one by one
 
 `pip install selenium`
 
+`cp config.sample.py config.py`
+replace the content of `config.py` file with your username and password.
+
 Setup is completed.
 
 # Now run scripts :
