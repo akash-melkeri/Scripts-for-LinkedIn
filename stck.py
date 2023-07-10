@@ -85,24 +85,42 @@ employees_who_liked = []
 
 employees_who_liked = ['Dheeraj Bharambe', 'Kartik Puri', 'Rutuja Ghanwat', 'Shubham Khobragade', 'Pruthviraj Kakade', 'Srikanth Gubba', 'Akash Mhatre', 'Deepika Pariyani', 'Samrudhi Patil', 'Manav Bajaj', 'Chetan Patel', 'Rabi Jaiswal', 'Raj Dwivedi', 'Dipak Patil', 'Prathamesh Kathavate', 'Manupriya Rana', 'Neha Malik', 'Abhishek Khilari', 'Abhinav Watve', 'Shubhanshu Jain', 'Permendra Pandey']
 all_liker = ['Abhishek Khilari', 'Prathamesh Kathavate', 'Rabi Jaiswal', 'Akshay Dadhich', 'Akash Mhatre', 'Nitesh Kumar', 'Deepika Pariyani', 'Samrudhi Patil', 'Hemant Singh', 'Shubham Khobragade', 'Rutuja Ghanwat', 'Shubhanshu Jain', 'Manupriya Rana', 'Dheeraj Bharambe', 'Mazhar Ansari', 'Chetan Patel', 'Srikanth G.', 'Manav Bajaj', 'Permendra Kumar Pandey', 'Raj Dwivedi', 'Abhinav Watve', 'Neelesh Kanyal', 'Guruprasad S G', 'Uma Mangal', 'Incentivate Solutions', 'Pruthviraj Kakade', 'Amit Jain', 'Deepak Patil', 'Kartik Puri', 'Neha Malik', 'Aryan .']
+all_liker = [all_liker,all_liker,all_liker]
 
-for i in employee_list:
+obj_emp = {}
+for i in sorted(employee_list):
+    temp = obj_emp.get(i,{})
+    temp["Employee Name"] = temp.get("Employee Name",i)
+    temp["Likes"] = temp.get("Likes",0)
+    # if i in obj_emp:
+    #     obj_emp = 
     print(i)
     for j in all_liker:
-        print(j,similar(i,j))
-        if(similar(i,j) > 0.70):
-            # employees_who_liked.append(i)
-            print("-----")
-            print("-----")
-            print("-----")
-            print("-----")
+        for k in j:
+            print(k,similar(i,k))
+            if(similar(i,k) > 0.70):
+                temp["Likes"] = temp.get("Likes",0)+1
+                obj_emp[i] = temp
+                # employees_who_liked.append(i)
+                print("-----")
+                print("-----")
+                print("-----")
+                print("-----")
+    obj_emp[i] = temp
     print()
     print()
     print()
 
+print(obj_emp,123123)
+outlist = []
+for i in obj_emp:
+    outlist.append(obj_emp)
+    # print(obj_emp[i])
+df = pd.DataFrame(outlist)
+print(df)
 
 
-print(sorted(employees_who_liked))
+# print(sorted(employees_who_liked))
 
 # print()
 # print(sorted(all_liker))
